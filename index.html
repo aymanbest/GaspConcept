@@ -5,6 +5,22 @@
   <title>Duda</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Sans&display=block" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./style.css">
+  <script>
+    Object.defineProperty(window, 'location', {
+  get: function() {
+    // Return a dummy object that prevents redirection
+    return {
+      href: '',
+      assign: function() {},
+      replace: function() {},
+      reload: function() {},
+      toString: function() {
+        return '';
+      }
+    };
+  }
+});
+  </script>
 
 </head>
 <body>
