@@ -6,52 +6,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Noto+Sans&display=block" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="./style.css">
   <script>
-// Override window.location methods to prevent redirection
 (function() {
-    var originalLocation = window.location;
-
-    function preventRedirection() {
-        return {
-            // Override properties
-            href: originalLocation.href,
-            assign: function() {},
-            replace: function() {},
-            reload: function() {},
-            // Override toString method
-            toString: function() {
-                return originalLocation.href;
-            }
-        };
-    }
-
     // Override window.location
+    var originalLocation = window.location;
     Object.defineProperty(window, 'location', {
-        get: preventRedirection,
-        set: function() {}
+        get: function() {
+            return originalLocation;
+        },
+        set: function(location) {
+            console.log("Prevented redirection to: " + location);
+        }
     });
 
     // Override document.location
     Object.defineProperty(document, 'location', {
-        get: preventRedirection,
-        set: function() {}
+        get: function() {
+            return originalLocation;
+        },
+        set: function(location) {
+            console.log("Prevented redirection to: " + location);
+        }
     });
 
     // Override window.open to prevent popups
-    window.open = function() {};
+    window.open = function() {
+        console.log("Prevented window.open()");
+    };
 
     // Override document.write to prevent dynamic script execution
-    document.write = function() {};
+    document.write = function() {
+        console.log("Prevented document.write()");
+    };
 
     // Override setTimeout and setInterval to prevent delayed redirection
     var originalSetTimeout = window.setTimeout;
     var originalSetInterval = window.setInterval;
-    window.setTimeout = function() {};
-    window.setInterval = function() {};
+    window.setTimeout = function() {
+        console.log("Prevented setTimeout()");
+    };
+    window.setInterval = function() {
+        console.log("Prevented setInterval()");
+    };
 
     // Override history methods to prevent navigation
-    window.history.forward = function() {};
-    window.history.back = function() {};
-    window.history.go = function() {};
+    window.history.forward = function() {
+        console.log("Prevented history.forward()");
+    };
+    window.history.back = function() {
+        console.log("Prevented history.back()");
+    };
+    window.history.go = function() {
+        console.log("Prevented history.go()");
+    };
 })();
 
   </script>
